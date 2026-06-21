@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Sistema de Chamados</string>
+    <string name="menu_novo_chamado">Novo Chamado</string>
+    <string name="menu_listagem">Listagem de Chamados</string>
+    <string name="menu_estatisticas">Estatísticas</string>
+    <string name="menu_sobre">Sobre o Sistema</string>
+    <string name="drawer_open">Abrir menu</string>
+    <string name="drawer_close">Fechar menu</string>
+    <string name="titulo_cadastro">Novo Chamado</string>
+    <string name="titulo_estatisticas">Estatísticas</string>
+    <string name="titulo_sobre">Sobre o Sistema</string>
+    <string name="sobre_descricao">Sistema de registro e acompanhamento de chamados corporativos, com armazenamento local e em nuvem (Back4App), captura de imagens e geração de estatísticas.</string>
+    <string name="sobre_integrantes">João Victor Borges Carvalho</string>
+    <string name="sobre_turma">Engenharia da Computação - 7º Período (2026.1)</string>
+</resources>
