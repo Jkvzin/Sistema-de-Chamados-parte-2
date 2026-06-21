@@ -67,7 +67,7 @@
                     android:layout_width="1dp"
                     android:layout_height="12dp"
                     android:layout_marginHorizontal="12dp"
-                    android:background="@color/primary_indigo_light"
+                    android:background="@color/primary_light"
                     android:alpha="0.4" />
 
                 <TextView
@@ -88,7 +88,7 @@
                 android:paddingHorizontal="14dp"
                 android:paddingVertical="6dp"
                 android:text="ABERTO"
-                android:textColor="@color/primary_indigo_light"
+                android:textColor="@color/primary_light"
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.05" />

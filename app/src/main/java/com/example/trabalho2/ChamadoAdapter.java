@@ -61,7 +61,7 @@ public class ChamadoAdapter extends RecyclerView.Adapter<ChamadoAdapter.ChamadoV
                 color = context.getResources().getColor(R.color.status_concluido);
                 break;
             default:
-                color = context.getResources().getColor(R.color.primary_indigo);
+                color = context.getResources().getColor(R.color.primary);
                 break;
         }
         holder.txtStatus.setTextColor(color);

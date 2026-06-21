@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.Trabalho2" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary_indigo</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryContainer">@color/primary_indigo_light</item>
-        <item name="colorOnPrimaryContainer">@color/primary_indigo_dark</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_light</item>
+        <item name="colorOnPrimaryContainer">@color/primary_dark</item>
         <item name="android:windowBackground">@color/dark_background</item>
     </style>
 

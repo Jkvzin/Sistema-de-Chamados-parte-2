@@ -1,26 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Neutral Palette -->
+    <!-- Neutral -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
-    <!-- Unified Professional Indigo Palette -->
-    <color name="primary_indigo">#5C6BC0</color>
-    <color name="primary_indigo_light">#9FA8DA</color>
-    <color name="primary_indigo_dark">#3F51B5</color>
+    <!-- Primary Palette: Azul Corporativo Moderno -->
+    <color name="primary">#3B82F6</color>
+    <color name="primary_light">#93C5FD</color>
+    <color name="primary_dark">#1D4ED8</color>
     <color name="on_primary">#FFFFFF</color>
 
-    <!-- Dark Theme Colors -->
-    <color name="dark_background">#1A202C</color>
-    <color name="dark_surface">#2D3748</color>
-    <color name="dark_on_surface">#FFFFFF</color>
-    <color name="dark_on_surface_variant">#E2E8F0</color>
+    <!-- Background & Surface (Dark Theme) -->
+    <color name="dark_background">#0F172A</color>
+    <color name="dark_surface">#1E293B</color>
+    <color name="dark_surface_light">#334155</color>
+    <color name="dark_on_surface">#F8FAFC</color>
+    <color name="dark_on_surface_variant">#CBD5E1</color>
 
-    <!-- Functional Colors -->
-    <color name="error">#E53E3E</color>
-    <color name="status_aberto">#D32F2F</color>
-    <color name="status_em_andamento">#F57C00</color>
-    <color name="status_concluido">#388E3C</color>
-    <color name="text_hint_dark">#A0AEC0</color>
-    <color name="card_stats_background">#2D3748</color>
+    <!-- Status Colors -->
+    <color name="status_aberto">#EF4444</color>
+    <color name="status_em_andamento">#F59E0B</color>
+    <color name="status_concluido">#10B981</color>
+
+    <!-- Functional -->
+    <color name="error">#EF4444</color>
+    <color name="success">#10B981</color>
+    <color name="warning">#F59E0B</color>
+    <color name="text_hint_dark">#64748B</color>
+    <color name="card_stats_bg_total">#1E293B</color>
+    <color name="card_stats_bg_abertos">#3B1F1F</color>
+    <color name="card_stats_bg_andamento">#3B2F1A</color>
+    <color name="card_stats_bg_concluidos">#1A2F2A</color>
+
+    <!-- Status Badge Background Colors -->
+    <color name="badge_aberto_bg">#29EF4444</color>
+    <color name="badge_em_andamento_bg">#29F59E0B</color>
+    <color name="badge_concluido_bg">#2910B981</color>
+
+    <!-- Drawer -->
+    <color name="drawer_header_bg">#1D4ED8</color>
+    <color name="drawer_bg">#1E293B</color>
+    <color name="drawer_item_text">#F8FAFC</color>
+    <color name="drawer_item_icon">#93C5FD</color>
 </resources>

@@ -35,7 +35,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:text="+ Filtros"
-            android:textColor="@color/primary_indigo_light" />
+            android:textColor="@color/primary_light" />
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView
@@ -90,7 +90,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/primary_indigo_light"
+                    android:backgroundTint="@color/primary_light"
                     android:hint="Início"
                     android:inputType="number"
                     android:textColor="@color/dark_on_surface"
@@ -108,7 +108,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/primary_indigo_light"
+                    android:backgroundTint="@color/primary_light"
                     android:hint="Fim"
                     android:inputType="number"
                     android:textColor="@color/dark_on_surface"
@@ -135,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:backgroundTint="@color/primary_indigo"
+                    android:backgroundTint="@color/primary"
                     android:text="BUSCAR"
                     android:textColor="@color/white" />
             </LinearLayout>

@@ -35,7 +35,7 @@
             android:enabled="false"
             android:hint="Título do Problema"
             app:boxBackgroundColor="@color/dark_surface"
-            app:hintTextColor="@color/primary_indigo_light">
+            app:hintTextColor="@color/primary_light">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputTitulo"
@@ -59,7 +59,7 @@
                 android:enabled="false"
                 android:hint="Data"
                 app:boxBackgroundColor="@color/dark_surface"
-                app:hintTextColor="@color/primary_indigo_light">
+                app:hintTextColor="@color/primary_light">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputData"
@@ -77,7 +77,7 @@
                 android:enabled="false"
                 android:hint="Local"
                 app:boxBackgroundColor="@color/dark_surface"
-                app:hintTextColor="@color/primary_indigo_light">
+                app:hintTextColor="@color/primary_light">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputLocal"
@@ -95,7 +95,7 @@
             android:enabled="false"
             android:hint="Descrição do Usuário"
             app:boxBackgroundColor="@color/dark_surface"
-            app:hintTextColor="@color/primary_indigo_light">
+            app:hintTextColor="@color/primary_light">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputDescricao"
@@ -114,7 +114,7 @@
             android:enabled="false"
             android:hint="Tipo"
             app:boxBackgroundColor="@color/dark_surface"
-            app:hintTextColor="@color/primary_indigo_light">
+            app:hintTextColor="@color/primary_light">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputTipo"
@@ -159,7 +159,7 @@
                 android:id="@+id/aberto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/primary_indigo"
+                android:buttonTint="@color/primary"
                 android:text="Aberto"
                 android:textColor="@color/dark_on_surface" />
 
@@ -167,7 +167,7 @@
                 android:id="@+id/emAtendimento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/primary_indigo"
+                android:buttonTint="@color/primary"
                 android:text="Em Andamento"
                 android:textColor="@color/dark_on_surface" />
 
@@ -175,7 +175,7 @@
                 android:id="@+id/concluido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/primary_indigo"
+                android:buttonTint="@color/primary"
                 android:text="Concluído"
                 android:textColor="@color/dark_on_surface" />
         </RadioGroup>
@@ -187,8 +187,8 @@
             android:layout_marginBottom="40dp"
             android:hint="Registro de Solução / Observações"
             app:boxBackgroundColor="@color/dark_surface"
-            app:boxStrokeColor="@color/primary_indigo"
-            app:hintTextColor="@color/primary_indigo_light">
+            app:boxStrokeColor="@color/primary"
+            app:hintTextColor="@color/primary_light">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputSolucao"
@@ -213,8 +213,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:text="VOLTAR"
-                android:textColor="@color/primary_indigo_light"
-                app:strokeColor="@color/primary_indigo_light" />
+                android:textColor="@color/primary_light"
+                app:strokeColor="@color/primary_light" />
 
             <Button
                 android:id="@+id/btnSalvar"
@@ -222,7 +222,7 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/primary_indigo"
+                android:backgroundTint="@color/primary"
                 android:text="SALVAR"
                 android:textColor="@color/white" />
         </LinearLayout>

@@ -15,7 +15,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/primary_indigo"
+        android:backgroundTint="@color/primary"
         android:text="+ NOVO CHAMADO"
         android:textColor="@color/white"
         android:textSize="16sp" />
