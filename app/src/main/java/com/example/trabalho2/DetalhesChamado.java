@@ -2,7 +2,7 @@ package com.example.trabalho2;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,15 +11,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.io.File;
 
 public class DetalhesChamado extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,13 +31,15 @@ public class DetalhesChamado extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detalhes_chamado);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Toolbar com botao voltar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(v -> finish());
 
         txtTitulo = findViewById(R.id.inputTitulo);
         txtData = findViewById(R.id.inputData);
@@ -94,14 +91,16 @@ public class DetalhesChamado extends AppCompatActivity implements View.OnClickLi
                 rbConcluido.setChecked(true);
             }
 
-            // Imagem
+            // Imagem (suporta content:// URI e file path) — com rotacao EXIF
             String imagemPath = c.getImagemPath();
             if (imagemPath != null && !imagemPath.isEmpty()) {
-                File imgFile = new File(imagemPath);
-                if (imgFile.exists()) {
-                    imgChamado.setVisibility(View.VISIBLE);
-                    imgChamado.setImageBitmap(BitmapFactory.decodeFile(imagemPath));
-                }
+                try {
+                    Bitmap bmp = ImageUtils.loadRotatedBitmap(this, imagemPath, 600, 600);
+                    if (bmp != null) {
+                        imgChamado.setVisibility(View.VISIBLE);
+                        imgChamado.setImageBitmap(bmp);
+                    }
+                } catch (Exception ignored) {}
             }
         }
     }

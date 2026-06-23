@@ -1,7 +1,7 @@
 package com.example.trabalho2;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class ChamadoAdapter extends RecyclerView.Adapter<ChamadoAdapter.ChamadoViewHolder> {
@@ -57,6 +56,7 @@ public class ChamadoAdapter extends RecyclerView.Adapter<ChamadoAdapter.ChamadoV
             case "Em Andamento":
                 color = context.getResources().getColor(R.color.status_em_andamento);
                 break;
+            case "Concluido":
             case "Concluído":
                 color = context.getResources().getColor(R.color.status_concluido);
                 break;
@@ -66,22 +66,30 @@ public class ChamadoAdapter extends RecyclerView.Adapter<ChamadoAdapter.ChamadoV
         }
         holder.txtStatus.setTextColor(color);
 
-        // Miniatura da imagem (se houver)
-        String imagemPath = chamadoAtual.getImagemPath();
-        if (imagemPath != null && !imagemPath.isEmpty()) {
-            File imgFile = new File(imagemPath);
-            if (imgFile.exists()) {
-                holder.imgThumbnail.setVisibility(View.VISIBLE);
-                holder.imgThumbnail.setImageBitmap(
-                        BitmapFactory.decodeFile(imagemPath));
-            } else {
-                holder.imgThumbnail.setVisibility(View.GONE);
-            }
-        } else {
-            holder.imgThumbnail.setVisibility(View.GONE);
-        }
+        // Miniatura da imagem (suporta content:// URI e file path)
+        carregarImagem(holder.imgThumbnail, chamadoAtual.getImagemPath());
 
         holder.itemView.setOnClickListener(v -> listener.onItemClick(chamadoAtual));
+    }
+
+    private void carregarImagem(ImageView imageView, String path) {
+        if (path == null || path.isEmpty()) {
+            imageView.setVisibility(View.GONE);
+            return;
+        }
+
+        try {
+            Bitmap bmp = ImageUtils.loadRotatedBitmap(context, path, 180, 180);
+            if (bmp != null) {
+                imageView.setImageBitmap(bmp);
+                imageView.setVisibility(View.VISIBLE);
+                return;
+            }
+        } catch (Exception e) {
+            // falha silenciosa ao carregar imagem
+        }
+
+        imageView.setVisibility(View.GONE);
     }
 
     @Override

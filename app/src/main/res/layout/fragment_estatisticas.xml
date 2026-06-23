@@ -22,7 +22,6 @@
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <!-- Total -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +55,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Abertos -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,7 +104,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Em Andamento -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,7 +153,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Concluidos -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,6 +1,7 @@
 package com.example.trabalho2;
 
-import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import java.io.OutputStream;
@@ -9,6 +10,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Helper para sincronizacao com Back4App via REST API.
@@ -25,6 +28,9 @@ public class Back4AppHelper {
     private static final String REST_API_KEY = "83NRotZurYd4PalaTMLH1hvHrHmnMnosDBFmxWQB";
     private static final String TAG = "Back4App";
 
+    private static final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private static final Handler mainHandler = new Handler(Looper.getMainLooper());
+
     public interface SyncCallback {
         void onSuccess(String objectId);
         void onError(String mensagem);
@@ -34,76 +40,65 @@ public class Back4AppHelper {
      * Envia um chamado para o Back4App de forma assincrona.
      */
     public static void enviarChamado(Chamado chamado, SyncCallback callback) {
-        new AsyncTask<Chamado, Void, String>() {
-            private String errorMsg = null;
+        executor.execute(() -> {
+            String errorMsg = null;
+            HttpURLConnection conn = null;
+            try {
+                URL url = new URL(BASE_URL);
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("X-Parse-Application-Id", APPLICATION_ID);
+                conn.setRequestProperty("X-Parse-REST-API-Key", REST_API_KEY);
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setDoOutput(true);
+                conn.setConnectTimeout(15000);
+                conn.setReadTimeout(15000);
 
-            @Override
-            protected String doInBackground(Chamado... params) {
-                Chamado c = params[0];
-                HttpURLConnection conn = null;
-                try {
-                    URL url = new URL(BASE_URL);
-                    conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
-                    conn.setRequestProperty("X-Parse-Application-Id", APPLICATION_ID);
-                    conn.setRequestProperty("X-Parse-REST-API-Key", REST_API_KEY);
-                    conn.setRequestProperty("Content-Type", "application/json");
-                    conn.setDoOutput(true);
-                    conn.setConnectTimeout(15000);
-                    conn.setReadTimeout(15000);
+                String dataAtual = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss",
+                        Locale.getDefault()).format(new Date());
 
-                    String dataAtual = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss",
-                            Locale.getDefault()).format(new Date());
+                String json = "{"
+                        + "\"titulo\":\"" + escapeJson(chamado.getTitulo()) + "\","
+                        + "\"descricao\":\"" + escapeJson(chamado.getDescricao()) + "\","
+                        + "\"local\":\"" + escapeJson(chamado.getLocal()) + "\","
+                        + "\"status\":\"" + escapeJson(chamado.getStatus()) + "\","
+                        + "\"dataCadastro\":\"" + escapeJson(dataAtual) + "\","
+                        + "\"imagemNome\":\"" + escapeJson(extrairNomeImagem(chamado.getImagemPath())) + "\""
+                        + "}";
 
-                    String json = "{"
-                            + "\"titulo\":\"" + escapeJson(c.getTitulo()) + "\","
-                            + "\"descricao\":\"" + escapeJson(c.getDescricao()) + "\","
-                            + "\"local\":\"" + escapeJson(c.getLocal()) + "\","
-                            + "\"status\":\"" + escapeJson(c.getStatus()) + "\","
-                            + "\"dataCadastro\":\"" + escapeJson(dataAtual) + "\","
-                            + "\"imagemNome\":\"" + escapeJson(extrairNomeImagem(c.getImagemPath())) + "\""
-                            + "}";
+                OutputStream os = conn.getOutputStream();
+                os.write(json.getBytes("UTF-8"));
+                os.flush();
+                os.close();
 
-                    OutputStream os = conn.getOutputStream();
-                    os.write(json.getBytes("UTF-8"));
-                    os.flush();
-                    os.close();
+                int responseCode = conn.getResponseCode();
+                if (responseCode == 201) {
+                    // Sucesso - ler resposta para obter objectId
+                    java.util.Scanner s = new java.util.Scanner(
+                            conn.getInputStream(), "UTF-8").useDelimiter("\\A");
+                    String resposta = s.hasNext() ? s.next() : "";
+                    s.close();
 
-                    int responseCode = conn.getResponseCode();
-                    if (responseCode == 201) {
-                        // Sucesso - ler resposta para obter objectId
-                        java.util.Scanner s = new java.util.Scanner(
-                                conn.getInputStream(), "UTF-8").useDelimiter("\\A");
-                        String resposta = s.hasNext() ? s.next() : "";
-                        s.close();
-
-                        // Extrai objectId da resposta JSON
-                        String objectId = extrairObjectId(resposta);
-                        Log.i(TAG, "Chamado enviado ao Back4App. ObjectId: " + objectId);
-                        return objectId != null ? objectId : "OK";
-                    } else {
-                        errorMsg = "Erro " + responseCode + " ao enviar para Back4App";
-                        Log.e(TAG, errorMsg);
-                        return null;
-                    }
-                } catch (Exception e) {
-                    errorMsg = "Exceção: " + e.getMessage();
-                    Log.e(TAG, "Erro ao enviar para Back4App", e);
-                    return null;
-                } finally {
-                    if (conn != null) conn.disconnect();
-                }
-            }
-
-            @Override
-            protected void onPostExecute(String result) {
-                if (result != null) {
-                    callback.onSuccess(result);
+                    // Extrai objectId da resposta JSON
+                    String objectId = extrairObjectId(resposta);
+                    Log.i(TAG, "Chamado enviado ao Back4App. ObjectId: " + objectId);
+                    String finalObjectId = objectId != null ? objectId : "OK";
+                    mainHandler.post(() -> callback.onSuccess(finalObjectId));
+                    return;
                 } else {
-                    callback.onError(errorMsg != null ? errorMsg : "Erro desconhecido");
+                    errorMsg = "Erro " + responseCode + " ao enviar para Back4App";
+                    Log.e(TAG, errorMsg);
                 }
+            } catch (Exception e) {
+                errorMsg = "Exceção: " + e.getMessage();
+                Log.e(TAG, "Erro ao enviar para Back4App", e);
+            } finally {
+                if (conn != null) conn.disconnect();
             }
-        }.execute(chamado);
+
+            String finalErrorMsg = errorMsg;
+            mainHandler.post(() -> callback.onError(finalErrorMsg != null ? finalErrorMsg : "Erro desconhecido"));
+        });
     }
 
     private static String escapeJson(String s) {

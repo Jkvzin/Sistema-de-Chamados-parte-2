@@ -1,6 +1,5 @@
 package com.example.trabalho2;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,10 +34,17 @@ public class ChamadosFragment extends Fragment {
         recyclerChamados.setLayoutManager(new LinearLayoutManager(getContext()));
 
         Button btnNovoChamado = view.findViewById(R.id.btnNovoChamado);
-        btnNovoChamado.setOnClickListener(v ->
-                startActivity(new Intent(getContext(), CadastroDemanda.class)));
+        btnNovoChamado.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, new CadastroFragment())
+                    .commit();
+            // Atualiza titulo da toolbar
+            if (requireActivity() instanceof MainActivity) {
+                ((MainActivity) requireActivity()).setToolbarTitle("Novo Chamado");
+            }
+        });
 
-        bd = new BD(getContext());
+        bd = new BD(requireContext());
         carregarLista();
 
         return view;

@@ -1,231 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_background"
-    android:fillViewport="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".DetalhesChamado">
 
-    <LinearLayout
-        android:id="@+id/main"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical"
-        android:padding="32dp"
-        tools:context=".DetalhesChamado">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:theme="@style/ThemeOverlay.Material3.Dark"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="Detalhes do Chamado"
+        app:titleTextColor="@color/white" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:gravity="center"
-            android:text="Detalhes do Chamado"
-            android:textColor="@color/dark_on_surface"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:enabled="false"
-            android:hint="Título do Problema"
-            app:boxBackgroundColor="@color/dark_surface"
-            app:hintTextColor="@color/primary_light">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputTitulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/dark_on_surface" />
-        </com.google.android.material.textfield.TextInputLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_background"
+        android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:orientation="horizontal">
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical"
+            android:padding="32dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="16dp"
                 android:enabled="false"
-                android:hint="Data"
+                android:hint="Título do Problema"
                 app:boxBackgroundColor="@color/dark_surface"
                 app:hintTextColor="@color/primary_light">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputData"
+                    android:id="@+id/inputTitulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/dark_on_surface" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:hint="Data"
+                    app:boxBackgroundColor="@color/dark_surface"
+                    app:hintTextColor="@color/primary_light">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/dark_on_surface" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:hint="Local"
+                    app:boxBackgroundColor="@color/dark_surface"
+                    app:hintTextColor="@color/primary_light">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputLocal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/dark_on_surface" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="16dp"
                 android:enabled="false"
-                android:hint="Local"
+                android:hint="Descrição do Usuário"
                 app:boxBackgroundColor="@color/dark_surface"
                 app:hintTextColor="@color/primary_light">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputLocal"
+                    android:id="@+id/inputDescricao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|start"
+                    android:lines="3"
+                    android:textColor="@color/dark_on_surface" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:enabled="false"
+                android:hint="Tipo"
+                app:boxBackgroundColor="@color/dark_surface"
+                app:hintTextColor="@color/primary_light">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTipo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/dark_on_surface" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/imgChamado"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="24dp"
+                android:background="@color/dark_surface"
+                android:contentDescription="Foto do chamado"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="24dp"
+                android:background="@color/dark_surface" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Atualizar Status do Chamado"
+                android:textColor="@color/dark_on_surface"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/rgStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/aberto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/primary"
+                    android:text="Aberto"
+                    android:textColor="@color/dark_on_surface" />
+
+                <RadioButton
+                    android:id="@+id/emAtendimento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/primary"
+                    android:text="Em Andamento"
+                    android:textColor="@color/dark_on_surface" />
+
+                <RadioButton
+                    android:id="@+id/concluido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/primary"
+                    android:text="Concluído"
+                    android:textColor="@color/dark_on_surface" />
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:hint="Registro de Solução / Observações"
+                app:boxBackgroundColor="@color/dark_surface"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary_light">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputSolucao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:lines="4"
+                    android:textColor="@color/dark_on_surface" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnVoltar"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:text="VOLTAR"
+                    android:textColor="@color/primary_light"
+                    app:strokeColor="@color/primary_light" />
+
+                <Button
+                    android:id="@+id/btnSalvar"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/primary"
+                    android:text="SALVAR"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
         </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:enabled="false"
-            android:hint="Descrição do Usuário"
-            app:boxBackgroundColor="@color/dark_surface"
-            app:hintTextColor="@color/primary_light">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputDescricao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top|start"
-                android:lines="3"
-                android:textColor="@color/dark_on_surface" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:enabled="false"
-            android:hint="Tipo"
-            app:boxBackgroundColor="@color/dark_surface"
-            app:hintTextColor="@color/primary_light">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputTipo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/dark_on_surface" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageView
-            android:id="@+id/imgChamado"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="24dp"
-            android:background="@color/dark_surface"
-            android:contentDescription="Foto do chamado"
-            android:scaleType="centerCrop"
-            android:visibility="gone" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="24dp"
-            android:background="@color/dark_surface" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:text="Atualizar Status do Chamado"
-            android:textColor="@color/dark_on_surface"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <RadioGroup
-            android:id="@+id/rgStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/aberto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/primary"
-                android:text="Aberto"
-                android:textColor="@color/dark_on_surface" />
-
-            <RadioButton
-                android:id="@+id/emAtendimento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/primary"
-                android:text="Em Andamento"
-                android:textColor="@color/dark_on_surface" />
-
-            <RadioButton
-                android:id="@+id/concluido"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/primary"
-                android:text="Concluído"
-                android:textColor="@color/dark_on_surface" />
-        </RadioGroup>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:hint="Registro de Solução / Observações"
-            app:boxBackgroundColor="@color/dark_surface"
-            app:boxStrokeColor="@color/primary"
-            app:hintTextColor="@color/primary_light">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputSolucao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top|start"
-                android:inputType="textMultiLine"
-                android:lines="4"
-                android:textColor="@color/dark_on_surface" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnVoltar"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:text="VOLTAR"
-                android:textColor="@color/primary_light"
-                app:strokeColor="@color/primary_light" />
-
-            <Button
-                android:id="@+id/btnSalvar"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/primary"
-                android:text="SALVAR"
-                android:textColor="@color/white" />
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
