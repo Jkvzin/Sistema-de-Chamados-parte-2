@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
+    private NavigationView navigationView;
     private int pendingNavItem = -1;
 
     @Override
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        this.navigationView = navigationView;
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -96,6 +98,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void setToolbarTitle(String titulo) {
         toolbar.setTitle(titulo);
+    }
+
+    /**
+     * Navega para um fragment via codigo (fora do drawer).
+     * Atualiza o titulo, troca o fragment E sincroniza o item selecionado no menu lateral.
+     */
+    public void navigateTo(int navItemId) {
+        navegarPara(navItemId);
+        navigationView.setCheckedItem(navItemId);
     }
 
     @Override

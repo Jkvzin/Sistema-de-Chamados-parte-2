@@ -128,11 +128,8 @@ public class CadastroFragment extends Fragment {
     }
 
     private void voltarParaListagem() {
-        requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, new ChamadosFragment())
-                .commit();
         if (requireActivity() instanceof MainActivity) {
-            ((MainActivity) requireActivity()).setToolbarTitle("Listagem de Chamados");
+            ((MainActivity) requireActivity()).navigateTo(R.id.nav_listagem);
         }
     }
 

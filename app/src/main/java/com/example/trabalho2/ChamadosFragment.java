@@ -35,12 +35,8 @@ public class ChamadosFragment extends Fragment {
 
         Button btnNovoChamado = view.findViewById(R.id.btnNovoChamado);
         btnNovoChamado.setOnClickListener(v -> {
-            requireActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.content_frame, new CadastroFragment())
-                    .commit();
-            // Atualiza titulo da toolbar
             if (requireActivity() instanceof MainActivity) {
-                ((MainActivity) requireActivity()).setToolbarTitle("Novo Chamado");
+                ((MainActivity) requireActivity()).navigateTo(R.id.nav_novo_chamado);
             }
         });
 
