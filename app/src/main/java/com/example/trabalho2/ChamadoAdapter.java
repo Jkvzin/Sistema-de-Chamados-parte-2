@@ -92,6 +92,11 @@ public class ChamadoAdapter extends RecyclerView.Adapter<ChamadoAdapter.ChamadoV
         imageView.setVisibility(View.GONE);
     }
 
+    public void atualizarLista(ArrayList<Chamado> novaLista) {
+        this.lista = novaLista;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return lista.size();

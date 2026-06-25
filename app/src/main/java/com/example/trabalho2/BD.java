@@ -123,6 +123,54 @@ public class BD extends SQLiteOpenHelper {
         Log.i("BD", "Atendimento atualizado com sucesso");
     }
 
+    public ArrayList<Chamado> getListaFiltrada(@Nullable String statusFiltro,
+                                               @Nullable String dataInicio,
+                                               @Nullable String dataFim) {
+        ArrayList<Chamado> todos = getLista();
+        ArrayList<Chamado> filtrada = new ArrayList<>();
+
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+
+        for (Chamado c : todos) {
+            // Filtro por status
+            if (statusFiltro != null && !statusFiltro.isEmpty() && !statusFiltro.equals("Todos")) {
+                if (!c.getStatus().equalsIgnoreCase(statusFiltro)) {
+                    continue;
+                }
+            }
+
+            // Filtro por data
+            if (dataInicio != null && !dataInicio.isEmpty()) {
+                try {
+                    java.util.Date dataChamado = sdf.parse(c.getData());
+                    java.util.Date dataInicioDate = sdf.parse(dataInicio);
+                    if (dataChamado != null && dataChamado.before(dataInicioDate)) {
+                        continue;
+                    }
+                } catch (java.text.ParseException e) {
+                    // ignora chamado com data inválida
+                    continue;
+                }
+            }
+
+            if (dataFim != null && !dataFim.isEmpty()) {
+                try {
+                    java.util.Date dataChamado = sdf.parse(c.getData());
+                    java.util.Date dataFimDate = sdf.parse(dataFim);
+                    if (dataChamado != null && dataChamado.after(dataFimDate)) {
+                        continue;
+                    }
+                } catch (java.text.ParseException e) {
+                    continue;
+                }
+            }
+
+            filtrada.add(c);
+        }
+
+        return filtrada;
+    }
+
     public Estatisticas getEstatisticas() {
         Estatisticas est = new Estatisticas();
         SQLiteDatabase db = getReadableDatabase();

@@ -14,11 +14,126 @@
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="@color/primary"
         android:text="+ NOVO CHAMADO"
         android:textColor="@color/white"
         android:textSize="16sp" />
+
+    <!-- Barra de Filtros -->
+    <LinearLayout
+        android:id="@+id/layoutFiltros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/filtro_bar_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Spinner de Status -->
+        <Spinner
+            android:id="@+id/spinnerStatusFiltro"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/spinner_background"
+            android:dropDownSelector="@drawable/spinner_dropdown_item"
+            android:popupBackground="@color/dark_surface_light"
+            android:paddingStart="10dp"
+            android:paddingEnd="28dp"
+            android:textColor="@color/dark_on_surface"
+            android:textSize="13sp" />
+
+        <!-- Data Início -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/spinner_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📅"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/editDataInicio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Início"
+                android:inputType="none"
+                android:paddingStart="4dp"
+                android:paddingEnd="0dp"
+                android:textColor="@color/dark_on_surface"
+                android:textColorHint="@color/text_hint_dark"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Data Fim -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/spinner_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📅"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/editDataFim"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Fim"
+                android:inputType="none"
+                android:paddingStart="4dp"
+                android:paddingEnd="0dp"
+                android:textColor="@color/dark_on_surface"
+                android:textColorHint="@color/text_hint_dark"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Botão Limpar -->
+        <TextView
+            android:id="@+id/btnLimparFiltros"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/spinner_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="@color/text_hint_dark"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txtVazio"
